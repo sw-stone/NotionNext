@@ -1,4 +1,5 @@
 import { BeiAnGongAn } from '@/components/BeiAnGongAn'
+import EarthBeast from '@/components/EarthBeast'
 import DarkModeButton from '@/components/DarkModeButton'
 import { siteConfig } from '@/lib/config'
 
@@ -51,7 +52,7 @@ const Footer = ({ title }) => {
           .
         </span>
       </span>
-    </footer>
+    <EarthBeast /></footer>
   )
 }
 
