@@ -64,20 +64,20 @@ const EarthBeast = () => {
           bottom: 20px !important;
           right: 20px !important;
           z-index: 99999 !important;
-          width: 130px !important;
-          height: 130px !important;
+          width: 140px !important;
+          height: 140px !important;
           cursor: pointer !important;
           animation: beastBreathe 3s ease-in-out infinite !important;
         }
         @keyframes beastBreathe {
           0%, 100% { transform: scale(1) translateY(0); }
-          50% { transform: scale(1.06) translateY(-4px); }
+          50% { transform: scale(1.05) translateY(-3px); }
         }
         .earthBeastWrap.bored .eb-eye { opacity: 0.25 !important; }
         .earthBeastWrap.bored .eb-body { animation: boredWobble 2.4s ease-in-out infinite !important; }
         @keyframes boredWobble {
           0%, 100% { transform: rotate(0); }
-          50% { transform: rotate(6deg); }
+          50% { transform: rotate(5deg); }
         }
         .earthBeastWrap.sad .eb-body { animation: sadFloat 3s ease-in-out infinite !important; }
         .earthBeastWrap.sad .eb-eye { opacity: 0.5 !important; }
@@ -106,7 +106,7 @@ const EarthBeast = () => {
         }
         #beastBubble {
           position: absolute !important;
-          bottom: 140px !important;
+          bottom: 150px !important;
           right: 5px !important;
           background: rgba(255,255,255,0.95) !important;
           padding: 8px 14px !important;
@@ -131,32 +131,72 @@ const EarthBeast = () => {
       `}</style>
       <div id="earthBeastWrap" ref={wrapRef} className="earthBeastWrap">
         <div id="beastBubble">✨ 欢迎来到我的博客！</div>
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',filter:'drop-shadow(0 4px 6px rgba(0,0,0,0.18))'}}>
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',filter:'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'}}>
+          <defs>
+            <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#A8D8EA"/>
+              <stop offset="50%" stopColor="#9B8FDB"/>
+              <stop offset="100%" stopColor="#7B68AE"/>
+            </linearGradient>
+            <linearGradient id="bellyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#D4C4F0"/>
+              <stop offset="100%" stopColor="#B8A9E0"/>
+            </linearGradient>
+          </defs>
           <g className="eb-body">
-            <ellipse cx="100" cy="130" rx="60" ry="48" fill="#C19A6B" stroke="#7A5C3E" strokeWidth="3"/>
-            <ellipse cx="85" cy="120" rx="8" ry="5" fill="#8B6914" opacity="0.25"/>
-            <ellipse cx="115" cy="135" rx="6" ry="4" fill="#8B6914" opacity="0.25"/>
-            <ellipse cx="100" cy="145" rx="7" ry="4" fill="#8B6914" opacity="0.2"/>
-            <circle cx="100" cy="70" r="42" fill="#D4A574" stroke="#7A5C3E" strokeWidth="3"/>
-            <ellipse cx="72" cy="40" rx="10" ry="14" fill="#B8895A" stroke="#7A5C3E" strokeWidth="2.5"/>
-            <ellipse cx="128" cy="40" rx="10" ry="14" fill="#B8895A" stroke="#7A5C3E" strokeWidth="2.5"/>
-            <ellipse cx="72" cy="40" rx="5" ry="8" fill="#E8C9A0"/>
-            <ellipse cx="128" cy="40" rx="5" ry="8" fill="#E8C9A0"/>
-            <line className="eb-brow-l" x1="82" y1="58" x2="95" y2="62" stroke="#5D4E37" strokeWidth="3" strokeLinecap="round"/>
-            <line className="eb-brow-r" x1="118" y1="62" x2="105" y2="58" stroke="#5D4E37" strokeWidth="3" strokeLinecap="round"/>
-            <circle className="eb-eye" cx="88" cy="72" r="7" fill="#3D2817"/>
-            <circle className="eb-eye" cx="112" cy="72" r="7" fill="#3D2817"/>
-            <circle cx="90" cy="69" r="2.5" fill="#fff"/>
-            <circle cx="114" cy="69" r="2.5" fill="#fff"/>
-            <ellipse cx="100" cy="82" rx="7" ry="4.5" fill="#7A5C3E"/>
-            <path id="ebMouth" d="M 88 90 Q 100 98 112 90" stroke="#5D4E37" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-            <ellipse cx="78" cy="85" rx="8" ry="4" fill="#E8A090" opacity="0.35"/>
-            <ellipse cx="122" cy="85" rx="8" ry="4" fill="#E8A090" opacity="0.35"/>
-            <ellipse cx="55" cy="135" rx="12" ry="8" fill="#B8895A" stroke="#7A5C3E" strokeWidth="2"/>
-            <ellipse cx="145" cy="135" rx="12" ry="8" fill="#B8895A" stroke="#7A5C3E" strokeWidth="2"/>
-            <ellipse cx="78" cy="170" rx="14" ry="10" fill="#B8895A" stroke="#7A5C3E" strokeWidth="2"/>
-            <ellipse cx="122" cy="170" rx="14" ry="10" fill="#B8895A" stroke="#7A5C3E" strokeWidth="2"/>
-            <path d="M 145 145 Q 165 135 160 155" stroke="#7A5C3E" strokeWidth="3" fill="none" strokeLinecap="round"/>
+            {/* 尾巴 */}
+            <path d="M 145 140 Q 170 120 165 150 Q 160 170 150 160" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2"/>
+            
+            {/* 身体 - 蓝紫色圆滚滚 */}
+            <ellipse cx="105" cy="125" rx="55" ry="45" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2.5"/>
+            
+            {/* 肚子 - 浅紫色 */}
+            <ellipse cx="105" cy="135" rx="35" ry="28" fill="url(#bellyGrad)" opacity="0.8"/>
+            
+            {/* 身体斑点 */}
+            <circle cx="85" cy="115" r="4" fill="#6B5B95" opacity="0.3"/>
+            <circle cx="120" cy="130" r="3" fill="#6B5B95" opacity="0.3"/>
+            <circle cx="95" cy="140" r="3.5" fill="#6B5B95" opacity="0.25"/>
+            
+            {/* 头部 - 大大的圆头 */}
+            <circle cx="100" cy="65" r="40" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2.5"/>
+            
+            {/* 额头小角 */}
+            <path d="M 100 30 L 105 20 L 95 20 Z" fill="#6B5B95" stroke="#5A4A85" strokeWidth="1.5"/>
+            
+            {/* 耳朵/小突起 */}
+            <circle cx="70" cy="45" r="6" fill="#9B8FDB" stroke="#6B5B95" strokeWidth="2"/>
+            <circle cx="130" cy="45" r="6" fill="#9B8FDB" stroke="#6B5B95" strokeWidth="2"/>
+            
+            {/* 眉毛 */}
+            <line className="eb-brow-l" x1="82" y1="55" x2="93" y2="58" stroke="#5A4A85" strokeWidth="2.5" strokeLinecap="round"/>
+            <line className="eb-brow-r" x1="118" y1="58" x2="107" y2="55" stroke="#5A4A85" strokeWidth="2.5" strokeLinecap="round"/>
+            
+            {/* 眼睛 - 闭眼微笑 */}
+            <path className="eb-eye" d="M 82 68 Q 88 74 94 68" stroke="#3D2817" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+            <path className="eb-eye" d="M 106 68 Q 112 74 118 68" stroke="#3D2817" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+            
+            {/* 腮红 */}
+            <ellipse cx="78" cy="78" rx="7" ry="4" fill="#F0A0A0" opacity="0.5"/>
+            <ellipse cx="122" cy="78" rx="7" ry="4" fill="#F0A0A0" opacity="0.5"/>
+            
+            {/* 鼻子 */}
+            <ellipse cx="100" cy="76" rx="4" ry="3" fill="#6B5B95"/>
+            
+            {/* 嘴巴 - 微笑 */}
+            <path id="ebMouth" d="M 92 84 Q 100 90 108 84" stroke="#5A4A85" strokeWidth="2" fill="none" strokeLinecap="round"/>
+            
+            {/* 小短手 */}
+            <ellipse cx="60" cy="120" rx="10" ry="7" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2"/>
+            <ellipse cx="150" cy="120" rx="10" ry="7" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2"/>
+            
+            {/* 小短脚 */}
+            <ellipse cx="80" cy="165" rx="12" ry="9" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2"/>
+            <ellipse cx="120" cy="165" rx="12" ry="9" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2"/>
+            
+            {/* 铃铛 */}
+            <circle cx="100" cy="105" r="5" fill="#FFD700" stroke="#DAA520" strokeWidth="1.5"/>
+            <line x1="100" y1="100" x2="100" y2="95" stroke="#DAA520" strokeWidth="1.5"/>
           </g>
         </svg>
       </div>
