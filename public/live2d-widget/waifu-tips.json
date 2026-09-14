@@ -1,0 +1,19 @@
+{
+  "message": {
+    "default": ["✨ 欢迎来到我的博客！"],
+    "welcome": ["今天也加油写博客哦！"],
+    "console": " Console 提示",
+    "copy": "📝 复制成功！",
+    "visibilitychange": "👀 回来啦？",
+    "mouseover": [],
+    "click": [],
+    "time": [],
+    "referrer": ""
+  },
+  "mouseover": [],
+  "click": [],
+  "seasons": [],
+  "modelId": 0,
+  "waifuPath": "",
+  "cdnPath": "/live2d-widget/"
+}

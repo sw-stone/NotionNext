@@ -1,5 +1,6 @@
 import AnalyticsBusuanzi from '@/components/AnalyticsBusuanzi'
 import EarthBeast from '@/components/EarthBeast'
+import Live2DWidget from '@/components/Live2DWidget'
 import { BeiAnGongAn } from '@/components/BeiAnGongAn'
 import DarkModeButton from '@/components/DarkModeButton'
 import { siteConfig } from '@/lib/config'
@@ -52,6 +53,9 @@ export default function Footer(props) {
           </span>
         </div>
       </div>
-    <EarthBeast /></footer>
+    <EarthBeast />
+      {/* Live2D Widget - 待激活，替换大地兽模型后取消注释
+      <Live2DWidget />
+      */}</footer>
   )
 }
