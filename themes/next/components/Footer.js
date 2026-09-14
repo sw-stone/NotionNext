@@ -1,5 +1,5 @@
 import { BeiAnGongAn } from '@/components/BeiAnGongAn'
-import EarthBeast from '@/components/EarthBeast'
+import EarthBeast from './EarthBeast'
 import DarkModeButton from '@/components/DarkModeButton'
 import { siteConfig } from '@/lib/config'
 
