@@ -9,6 +9,12 @@ const EarthBeast = () => {
       if (!wrap) return
 
       const bubble = document.getElementById('beastBubble')
+      const mouth = document.getElementById('ebMouth')
+      const browL = document.querySelector('.eb-brow-l')
+      const browR = document.querySelector('.eb-brow-r')
+      const eyeL = document.querySelector('.eb-eye-l')
+      const eyeR = document.querySelector('.eb-eye-r')
+      const blush = document.querySelector('.eb-blush')
       const last = localStorage.getItem('lastBlogUpdate')
       const t = last ? new Date(last) : new Date(Date.now() - 86400000)
       const d = Math.floor((Date.now() - t) / 86400000)
@@ -73,16 +79,18 @@ const EarthBeast = () => {
           0%, 100% { transform: scale(1) translateY(0); }
           50% { transform: scale(1.05) translateY(-3px); }
         }
-        .earthBeastWrap.bored .eb-eye { opacity: 0.25 !important; }
         .earthBeastWrap.bored .eb-body { animation: boredWobble 2.4s ease-in-out infinite !important; }
         @keyframes boredWobble {
           0%, 100% { transform: rotate(0); }
-          50% { transform: rotate(5deg); }
+          50% { transform: rotate(6deg); }
         }
         .earthBeastWrap.sad .eb-body { animation: sadFloat 3s ease-in-out infinite !important; }
-        .earthBeastWrap.sad .eb-eye { opacity: 0.5 !important; }
         .earthBeastWrap.angry { animation: angryShake 0.5s ease-in-out infinite !important; }
-        .earthBeastWrap.angry .eb-eye { opacity: 1 !important; }
+        @keyframes angryShake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-3px); }
+          75% { transform: translateX(3px); }
+        }
         .earthBeastWrap.angry::after {
           content: '💢' !important;
           position: absolute !important;
@@ -90,11 +98,6 @@ const EarthBeast = () => {
           right: -8px !important;
           font-size: 22px !important;
           animation: angryPop 0.5s ease-in-out infinite !important;
-        }
-        @keyframes angryShake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-3px); }
-          75% { transform: translateX(3px); }
         }
         @keyframes angryPop {
           0%, 100% { transform: scale(1); opacity: 1; }
@@ -147,44 +150,44 @@ const EarthBeast = () => {
             {/* 尾巴 */}
             <path d="M 145 140 Q 170 120 165 150 Q 160 170 150 160" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2"/>
             
-            {/* 身体 - 蓝紫色圆滚滚 */}
+            {/* 身体 */}
             <ellipse cx="105" cy="125" rx="55" ry="45" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2.5"/>
             
-            {/* 肚子 - 浅紫色 */}
+            {/* 肚子 */}
             <ellipse cx="105" cy="135" rx="35" ry="28" fill="url(#bellyGrad)" opacity="0.8"/>
             
-            {/* 身体斑点 */}
+            {/* 斑点 */}
             <circle cx="85" cy="115" r="4" fill="#6B5B95" opacity="0.3"/>
             <circle cx="120" cy="130" r="3" fill="#6B5B95" opacity="0.3"/>
             <circle cx="95" cy="140" r="3.5" fill="#6B5B95" opacity="0.25"/>
             
-            {/* 头部 - 大大的圆头 */}
+            {/* 头部 */}
             <circle cx="100" cy="65" r="40" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2.5"/>
             
-            {/* 额头小角 */}
+            {/* 小角 */}
             <path d="M 100 30 L 105 20 L 95 20 Z" fill="#6B5B95" stroke="#5A4A85" strokeWidth="1.5"/>
             
-            {/* 耳朵/小突起 */}
+            {/* 耳朵 */}
             <circle cx="70" cy="45" r="6" fill="#9B8FDB" stroke="#6B5B95" strokeWidth="2"/>
             <circle cx="130" cy="45" r="6" fill="#9B8FDB" stroke="#6B5B95" strokeWidth="2"/>
             
-            {/* 眉毛 */}
-            <line className="eb-brow-l" x1="82" y1="55" x2="93" y2="58" stroke="#5A4A85" strokeWidth="2.5" strokeLinecap="round"/>
-            <line className="eb-brow-r" x1="118" y1="58" x2="107" y2="55" stroke="#5A4A85" strokeWidth="2.5" strokeLinecap="round"/>
-            
-            {/* 眼睛 - 闭眼微笑 */}
-            <path className="eb-eye" d="M 82 68 Q 88 74 94 68" stroke="#3D2817" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-            <path className="eb-eye" d="M 106 68 Q 112 74 118 68" stroke="#3D2817" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-            
             {/* 腮红 */}
-            <ellipse cx="78" cy="78" rx="7" ry="4" fill="#F0A0A0" opacity="0.5"/>
-            <ellipse cx="122" cy="78" rx="7" ry="4" fill="#F0A0A0" opacity="0.5"/>
+            <ellipse className="eb-blush" cx="78" cy="78" rx="7" ry="4" fill="#F0A0A0" opacity="0.5"/>
+            <ellipse className="eb-blush" cx="122" cy="78" rx="7" ry="4" fill="#F0A0A0" opacity="0.5"/>
+            
+            {/* 眉毛 - 默认开心 */}
+            <path className="eb-brow-l" d="M 82 55 Q 87 52 93 55" stroke="#5A4A85" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+            <path className="eb-brow-r" d="M 118 55 Q 113 52 107 55" stroke="#5A4A85" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+            
+            {/* 眼睛 - 默认开心闭眼 */}
+            <path className="eb-eye-l" d="M 82 68 Q 88 74 94 68" stroke="#3D2817" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+            <path className="eb-eye-r" d="M 106 68 Q 112 74 118 68" stroke="#3D2817" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
             
             {/* 鼻子 */}
             <ellipse cx="100" cy="76" rx="4" ry="3" fill="#6B5B95"/>
             
-            {/* 嘴巴 - 微笑 */}
-            <path id="ebMouth" d="M 92 84 Q 100 90 108 84" stroke="#5A4A85" strokeWidth="2" fill="none" strokeLinecap="round"/>
+            {/* 嘴巴 - 默认微笑 */}
+            <path id="ebMouth" d="M 92 84 Q 100 91 108 84" stroke="#5A4A85" strokeWidth="2" fill="none" strokeLinecap="round"/>
             
             {/* 小短手 */}
             <ellipse cx="60" cy="120" rx="10" ry="7" fill="url(#bodyGrad)" stroke="#6B5B95" strokeWidth="2"/>
